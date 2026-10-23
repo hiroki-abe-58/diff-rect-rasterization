@@ -10,7 +10,9 @@
  */
 
 #include <math.h>
-#include <torch/extension.h>
+// The tensor API is all this file needs. torch/extension.h also pulls in torch/csrc/dynamo headers that nvcc with MSVC
+// rejects (error C2872: 'std': ambiguous symbol), so the Windows build failed here; the bindings stay in ext.cpp.
+#include <torch/types.h>
 #include <cstdio>
 #include <sstream>
 #include <iostream>
